@@ -1,12 +1,12 @@
-using CliFx.Infrastructure;
 using CliFx;
+using CliFx.Infrastructure;
 
 namespace Style.Tests.Utilities;
 
 /// <summary>
 /// Provides a collection of helper methods to assist tests.
 /// </summary>
-internal class TestHelpers
+internal sealed class TestHelpers
 {
     /// <summary>
     /// Builds a <see cref="CliApplication"/> suitable for running tests against.
@@ -32,8 +32,8 @@ internal class TestHelpers
     /// </remarks>
     /// <returns>A collection of expected output segments.</returns>
     internal static string[] GetExpectedDefaultHelpMenuOutputSegments() =>
-       new[]
-       {
+        new[]
+        {
             Constants.CliTitle,
             Constants.CliVersion,
             Constants.CliDescription,
@@ -47,7 +47,7 @@ internal class TestHelpers
             "COMMANDS",
             Style.Constants.FormatCommand,
             Style.Constants.VerifyCommand,
-       };
+        };
 
     /// <summary>
     /// Gets a snippet of expected output when run with a quiet verbosity.
@@ -58,7 +58,8 @@ internal class TestHelpers
     /// output verbosity mechanism works as expected.
     /// </remarks>
     /// <returns>An expected quiet verbosity output segment.</returns>
-    internal static string GetExpectedQuietOutputSegment() => "Preparing the base system upgrade files.";
+    internal static string GetExpectedQuietOutputSegment() =>
+        "Preparing the base system upgrade files.";
 
     /// <summary>
     /// Gets a snippet of expected output when run with a normal verbosity or below.
@@ -69,7 +70,8 @@ internal class TestHelpers
     /// output verbosity mechanism works as expected.
     /// </remarks>
     /// <returns>An expected normal verbosity output segment.</returns>
-    internal static string GetExpectedNormalOutputSegment() => "Starting the SEL UTM upgrade preparation process.";
+    internal static string GetExpectedNormalOutputSegment() =>
+        "Starting the SEL UTM upgrade preparation process.";
 
     /// <summary>
     /// Gets a snippet of expected output when run with a verbose verbosity or below.

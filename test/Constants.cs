@@ -3,7 +3,7 @@ namespace Style.Tests;
 /// <summary>
 /// A collection of commonly used, immutable values for tests.
 /// </summary>
-internal class Constants
+internal sealed class Constants
 {
     internal const string CliTitle = "Test CLI";
     internal const string CliExecutableName = "tc";

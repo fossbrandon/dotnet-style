@@ -2,19 +2,20 @@ using CliFx.Infrastructure;
 using CliWrap.Buffered;
 using FluentAssertions;
 using Style.Extensions;
-using Style.Tests.Utilities;
 
 namespace Style.Tests.Extensions;
 
 /// <summary>
-/// Provides unit tests for the <see cref="ConsoleExtensions"/> class.
+/// Provides unit tests for the <see cref="Style.Extensions.ConsoleExtensions"/> class.
 /// </summary>
 public class ConsoleExtensionsUnitTests
 {
-    private string nl = Environment.NewLine;
-    private List<Verbosity> quietAndGreaterVerbosities = new() { Verbosity.Quiet, Verbosity.Normal, Verbosity.Verbose };
-    private List<Verbosity> normalAndGreaterVerbosities = new() { Verbosity.Normal, Verbosity.Verbose };
-    private List<Verbosity> verboseAndGreaterVerbosities = new() { Verbosity.Verbose };
+    private readonly string nl = Environment.NewLine;
+    private readonly List<Verbosity> quietAndGreaterVerbosities =
+        new() { Verbosity.Quiet, Verbosity.Normal, Verbosity.Verbose };
+    private readonly List<Verbosity> normalAndGreaterVerbosities =
+        new() { Verbosity.Normal, Verbosity.Verbose };
+    private readonly List<Verbosity> verboseAndGreaterVerbosities = new() { Verbosity.Verbose };
 
     [Theory]
     [InlineData(null, "")]
@@ -23,9 +24,14 @@ public class ConsoleExtensionsUnitTests
     [InlineData("\n", "\n")]
     [InlineData("\t", $"\t")]
     [InlineData("This should appear in the console", "This should appear in the console")]
-    [InlineData("This multiline message\nshould appear in the console", "This multiline message\nshould appear in the console")]
+    [InlineData(
+        "This multiline message\nshould appear in the console",
+        "This multiline message\nshould appear in the console"
+    )]
     public async Task WriteQuietLineAsync_writes_to_the_console_given_a_message_and_a_verbosity_of_quiet_or_higher(
-        string? message, string expected)
+        string? message,
+        string expected
+    )
     {
         foreach (var verbosity in quietAndGreaterVerbosities)
         {
@@ -49,9 +55,14 @@ public class ConsoleExtensionsUnitTests
     [InlineData("\n", "\n")]
     [InlineData("\t", $"\t")]
     [InlineData("This should appear in the console", "This should appear in the console")]
-    [InlineData("This multiline message\nshould appear in the console", "This multiline message\nshould appear in the console")]
+    [InlineData(
+        "This multiline message\nshould appear in the console",
+        "This multiline message\nshould appear in the console"
+    )]
     public async Task WriteNormalLineAsync_writes_to_the_console_given_a_message_and_a_verbosity_of_normal_or_higher(
-        string? message, string expected)
+        string? message,
+        string expected
+    )
     {
         foreach (var verbosity in normalAndGreaterVerbosities)
         {
@@ -71,7 +82,8 @@ public class ConsoleExtensionsUnitTests
     [Theory]
     [InlineData(Verbosity.Quiet)]
     public async Task WriteNormalLineAsync_does_not_write_to_the_console_given_a_message_and_a_verbosity_lower_than_normal(
-        Verbosity verbosity)
+        Verbosity verbosity
+    )
     {
         // Arrange.
         using var console = new FakeInMemoryConsole();
@@ -92,9 +104,14 @@ public class ConsoleExtensionsUnitTests
     [InlineData("\n", "\n")]
     [InlineData("\t", $"\t")]
     [InlineData("This should appear in the console", "This should appear in the console")]
-    [InlineData("This multiline message\nshould appear in the console", "This multiline message\nshould appear in the console")]
+    [InlineData(
+        "This multiline message\nshould appear in the console",
+        "This multiline message\nshould appear in the console"
+    )]
     public async Task WriteVerboseLineAsync_writes_to_the_console_given_a_message_and_a_verbosity_of_verbose_or_higher(
-        string? message, string expected)
+        string? message,
+        string expected
+    )
     {
         foreach (var verbosity in verboseAndGreaterVerbosities)
         {
@@ -115,7 +132,8 @@ public class ConsoleExtensionsUnitTests
     [InlineData(Verbosity.Quiet)]
     [InlineData(Verbosity.Normal)]
     public async Task WriteVerboseLineAsync_does_not_write_to_the_console_given_a_message_and_a_verbosity_lower_than_verbose(
-        Verbosity verbosity)
+        Verbosity verbosity
+    )
     {
         // Arrange.
         using var console = new FakeInMemoryConsole();
@@ -130,17 +148,32 @@ public class ConsoleExtensionsUnitTests
     }
 
     [Theory]
-    [InlineData(Style.Constants.DotnetCli, Style.Constants.CsharpierOption, $"Running the command '{Style.Constants.DotnetCli} {Style.Constants.CsharpierOption}'")]
+    [InlineData(
+        Style.Constants.DotnetCli,
+        Style.Constants.CsharpierOption,
+        $"Running the command '{Style.Constants.DotnetCli} {Style.Constants.CsharpierOption}'"
+    )]
     [InlineData("command", "", $"Running the command 'command'")]
     [InlineData(" command ", " arguments ", $"Running the command 'command arguments'")]
     [InlineData("command", null, $"Running the command 'command'")]
     [InlineData("command", "    ", $"Running the command 'command'")]
     [InlineData("command", "\t", $"Running the command 'command'")]
     [InlineData("command", "\n", $"Running the command 'command'")]
-    [InlineData("command", "arguments --path-option \"/etc/example\"", $"Running the command 'command arguments --path-option \"/etc/example\"'")]
-    [InlineData("command", "--multiline\narguments", $"Running the command 'command --multiline\narguments'")]
+    [InlineData(
+        "command",
+        "arguments --path-option \"/etc/example\"",
+        $"Running the command 'command arguments --path-option \"/etc/example\"'"
+    )]
+    [InlineData(
+        "command",
+        "--multiline\narguments",
+        $"Running the command 'command --multiline\narguments'"
+    )]
     public async Task WriteCliCommandToRunAsync_writes_to_the_console_given_a_message_and_a_verbosity_of_normal_or_higher(
-        string command, string arguments, string expected)
+        string command,
+        string arguments,
+        string expected
+    )
     {
         foreach (var verbosity in normalAndGreaterVerbosities)
         {
@@ -160,7 +193,8 @@ public class ConsoleExtensionsUnitTests
     [Theory]
     [InlineData(Verbosity.Quiet)]
     public async Task WriteCliCommandToRunAsync_does_not_write_to_the_console_given_a_message_and_a_verbosity_lower_than_normal(
-        Verbosity verbosity)
+        Verbosity verbosity
+    )
     {
         // Arrange.
         using var console = new FakeInMemoryConsole();
@@ -181,18 +215,20 @@ public class ConsoleExtensionsUnitTests
     [InlineData("    ")]
     [InlineData("\t")]
     [InlineData("\n")]
-    public async Task WriteCliCommandToRunAsync_throws_exception_given_empty_command(string? command)
+    public async Task WriteCliCommandToRunAsync_throws_exception_given_empty_command(
+        string? command
+    )
     {
         // Arrange.
         using var console = new FakeInMemoryConsole();
         const string arguments = "arguments";
 
         // Act.
-        Func<Task> ActAsync = async () =>
+        Func<Task> actAsync = async () =>
             await console.WriteCliCommandToRunAsync(command!, arguments, Verbosity.Normal);
 
         // Assert.
-        await ActAsync
+        await actAsync
             .Should()
             .ThrowAsync<ArgumentNullException>()
             .WithMessage("The parameter must be a non-empty value (Parameter 'command')");
@@ -201,7 +237,8 @@ public class ConsoleExtensionsUnitTests
     [Theory]
     [InlineData("Should show up")]
     public async Task WriteCliCommandStandardOutputAsync_writes_to_the_console_given_the_command_result_with_non_empty_standard_output_and_a_verbosity_of_verbose_or_higher(
-        string standardOuptut)
+        string standardOuptut
+    )
     {
         foreach (var verbosity in verboseAndGreaterVerbosities)
         {
@@ -209,12 +246,11 @@ public class ConsoleExtensionsUnitTests
             using var console = new FakeInMemoryConsole();
             var result = new BufferedCommandResult(
                 0,
-                new DateTimeOffset(
-                    new DateTime(2023, 05, 04, 01, 00, 00)),
-                new DateTimeOffset(
-                    new DateTime(2023, 05, 04, 01, 00, 05)),
+                new DateTimeOffset(new DateTime(2023, 05, 04, 01, 00, 00)),
+                new DateTimeOffset(new DateTime(2023, 05, 04, 01, 00, 05)),
                 standardOuptut,
-                "");
+                ""
+            );
             var sanitizedExpected = $"Command Output:{nl}{nl}{standardOuptut}{nl}{nl}";
 
             // Act.
@@ -233,18 +269,18 @@ public class ConsoleExtensionsUnitTests
     [InlineData("\t")]
     [InlineData("\n")]
     public async Task WriteCliCommandStandardOutputAsync_does_not_write_to_the_console_given_result_with_empty_standard_output(
-        string? emptyStandardOutput)
+        string? emptyStandardOutput
+    )
     {
         // Arrange.
         using var console = new FakeInMemoryConsole();
         var result = new BufferedCommandResult(
             0,
-            new DateTimeOffset(
-                new DateTime(2023, 05, 04, 01, 00, 00)),
-            new DateTimeOffset(
-                new DateTime(2023, 05, 04, 01, 00, 05)),
+            new DateTimeOffset(new DateTime(2023, 05, 04, 01, 00, 00)),
+            new DateTimeOffset(new DateTime(2023, 05, 04, 01, 00, 05)),
             emptyStandardOutput!,
-            "");
+            ""
+        );
 
         // Act.
         await console.WriteCliCommandStandardOutputAsync(result, Verbosity.Verbose);
@@ -257,18 +293,18 @@ public class ConsoleExtensionsUnitTests
     [Theory]
     [InlineData(Verbosity.Quiet)]
     public async Task WriteCliCommandStandardOutputAsync_does_not_write_to_the_console_given_the_command_result_and_a_verbosity_lower_than_normal(
-        Verbosity verbosity)
+        Verbosity verbosity
+    )
     {
         // Arrange.
         using var console = new FakeInMemoryConsole();
         var result = new BufferedCommandResult(
             0,
-            new DateTimeOffset(
-                new DateTime(2023, 05, 04, 01, 00, 00)),
-            new DateTimeOffset(
-                new DateTime(2023, 05, 04, 01, 00, 05)),
+            new DateTimeOffset(new DateTime(2023, 05, 04, 01, 00, 00)),
+            new DateTimeOffset(new DateTime(2023, 05, 04, 01, 00, 05)),
             "Should not show up",
-            "Fake error message");
+            "Fake error message"
+        );
 
         // Act.
         await console.WriteCliCommandStandardOutputAsync(result, verbosity);

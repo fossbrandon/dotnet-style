@@ -1,8 +1,5 @@
-using System.Runtime.InteropServices;
-using CliFx;
 using CliFx.Infrastructure;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Style.Tests.Utilities;
 
 namespace Style.Tests;

@@ -17,6 +17,11 @@ root = false
 # Tests often have unused expressions as part of the test infrastructure so ignore this rule
 dotnet_diagnostic.IDE0058.severity = none
 
+# CS1591: Missing XML comment for publicly visible type or member
+# https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs1591
+# Test methods must be publice and are self documenting with descriptive names so ignore this rule
+dotnet_diagnostic.CS1591.severity = none
+
 # Naming Styles
 # ignored_style (lists a capitalization style since one is required)
 dotnet_naming_style.ignored_style.capitalization = pascal_case

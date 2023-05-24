@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Style.Tests.Utilities;
-using Style.Format;
 using CliFx.Infrastructure;
 using FluentAssertions;
+using Style.Format;
+using Style.Tests.Utilities;
 
 namespace Style.Tests.Format;
 
@@ -16,7 +11,7 @@ namespace Style.Tests.Format;
 public class FormatCommandFunctionalTests
 {
     private static readonly string nl = TestHelpers.NL;
-    private const string command = Style.Constants.FormatCommand;
+    private const string Command = Style.Constants.FormatCommand;
 
     [Theory]
     [InlineData("--help")]
@@ -29,7 +24,7 @@ public class FormatCommandFunctionalTests
         using var console = new FakeInMemoryConsole();
 
         var sut = TestHelpers.BuildStyleTestApp(console);
-        var args = new[] { command, input };
+        var args = new[] { Command, input };
 
         // Act.
         var exitCode = await sut.RunAsync(args);
@@ -54,7 +49,7 @@ public class FormatCommandFunctionalTests
         using var console = new FakeInMemoryConsole();
         var sut = TestHelpers.BuildStyleTestApp(console);
 
-        var args = new[] { command, invalidOption };
+        var args = new[] { Command, invalidOption };
 
         // Act.
         var exitCode = await sut.RunAsync(args);
@@ -75,14 +70,15 @@ public class FormatCommandFunctionalTests
         const string invalidValue = "invalid";
 
         var expectedStdOutputSegments = GetExpectedFormatHelpMenuOutputSegments();
-        var expectedStdError = $"Option -c|{validOption} cannot be set from the provided argument(s):{nl}" +
-            $"<{invalidValue}>{nl}" +
-            $"Error: String '{invalidValue}' was not recognized as a valid Boolean.{nl}";
+        var expectedStdError =
+            $"Option -c|{validOption} cannot be set from the provided argument(s):{nl}"
+            + $"<{invalidValue}>{nl}"
+            + $"Error: String '{invalidValue}' was not recognized as a valid Boolean.{nl}";
 
         using var console = new FakeInMemoryConsole();
         var sut = TestHelpers.BuildStyleTestApp(console);
 
-        var args = new[] { command, validOption, invalidValue };
+        var args = new[] { Command, validOption, invalidValue };
 
         // Act.
         var exitCode = await sut.RunAsync(args);
@@ -107,7 +103,7 @@ public class FormatCommandFunctionalTests
         using var console = new FakeInMemoryConsole();
         var sut = TestHelpers.BuildStyleTestApp(console);
 
-        var args = new[] { command, invalidParameter };
+        var args = new[] { Command, invalidParameter };
 
         // Act.
         var exitCode = await sut.RunAsync(args);
@@ -132,7 +128,7 @@ public class FormatCommandFunctionalTests
 
         var args = new[]
         {
-            command,
+            Command,
             $"--{Style.Constants.StyleOption}",
             "false",
             $"--{Style.Constants.AnalyzersOption}",
@@ -159,16 +155,17 @@ public class FormatCommandFunctionalTests
     {
         // Arrange.
         var expectedStdOutputSegments = GetExpectedFormatHelpMenuOutputSegments();
-        var expectedStdError = "You may only enable one whitespace formatter to format code with " +
-                $"by specifying either the '--{Style.Constants.CsharpierOption}' option or the " +
-                $"'--{Style.Constants.WhitespaceOption}' option to avoid potential conflicts.{nl}";
+        var expectedStdError =
+            "You may only enable one whitespace formatter to format code with "
+            + $"by specifying either the '--{Style.Constants.CsharpierOption}' option or the "
+            + $"'--{Style.Constants.WhitespaceOption}' option to avoid potential conflicts.{nl}";
 
         using var console = new FakeInMemoryConsole();
         var sut = TestHelpers.BuildStyleTestApp(console);
 
         var args = new[]
         {
-            command,
+            Command,
             $"--{Style.Constants.StyleOption}",
             "false",
             $"--{Style.Constants.AnalyzersOption}",
@@ -191,19 +188,19 @@ public class FormatCommandFunctionalTests
     }
 
     internal static string[] GetExpectedFormatHelpMenuOutputSegments() =>
-       new[]
-       {
-           Constants.CliTitle,
-           Constants.CliVersion,
-           Constants.CliDescription,
-           "USAGE",
-           $"{Constants.CliExecutableName}",
-           Style.Constants.FormatCommand,
-           "DESCRIPTION",
-           "OPTIONS",
-           "-v|--verbosity",
-           "The output verbosity level. Choices: \"Quiet\", \"Normal\", \"Verbose\". Default: \"Normal\".",
-           "-h|--help",
-           "Shows help text.",
-       };
+        new[]
+        {
+            Constants.CliTitle,
+            Constants.CliVersion,
+            Constants.CliDescription,
+            "USAGE",
+            $"{Constants.CliExecutableName}",
+            Style.Constants.FormatCommand,
+            "DESCRIPTION",
+            "OPTIONS",
+            "-v|--verbosity",
+            "The output verbosity level. Choices: \"Quiet\", \"Normal\", \"Verbose\". Default: \"Normal\".",
+            "-h|--help",
+            "Shows help text.",
+        };
 }

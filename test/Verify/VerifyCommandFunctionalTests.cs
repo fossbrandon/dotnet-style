@@ -1,13 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using CliFx;
 using CliFx.Infrastructure;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestPlatform.Utilities;
 using Style.Tests.Utilities;
 using Style.Verify;
 
@@ -19,7 +11,7 @@ namespace Style.Tests.Verify;
 public class VerifyCommandFunctionalTests
 {
     private static readonly string nl = TestHelpers.NL;
-    private const string command = Style.Constants.VerifyCommand;
+    private const string Command = Style.Constants.VerifyCommand;
 
     [Theory]
     [InlineData("--help")]
@@ -32,7 +24,7 @@ public class VerifyCommandFunctionalTests
         using var console = new FakeInMemoryConsole();
 
         var sut = TestHelpers.BuildStyleTestApp(console);
-        var args = new[] { command, input };
+        var args = new[] { Command, input };
 
         // Act.
         var exitCode = await sut.RunAsync(args);
@@ -57,7 +49,7 @@ public class VerifyCommandFunctionalTests
         using var console = new FakeInMemoryConsole();
         var sut = TestHelpers.BuildStyleTestApp(console);
 
-        var args = new[] { command, invalidOption };
+        var args = new[] { Command, invalidOption };
 
         // Act.
         var exitCode = await sut.RunAsync(args);
@@ -78,14 +70,15 @@ public class VerifyCommandFunctionalTests
         const string invalidValue = "invalid";
 
         var expectedStdOutputSegments = GetExpectedVerifyHelpMenuOutputSegments();
-        var expectedStdError = $"Option -c|{validOption} cannot be set from the provided argument(s):{nl}" +
-            $"<{invalidValue}>{nl}" +
-            $"Error: String '{invalidValue}' was not recognized as a valid Boolean.{nl}";
+        var expectedStdError =
+            $"Option -c|{validOption} cannot be set from the provided argument(s):{nl}"
+            + $"<{invalidValue}>{nl}"
+            + $"Error: String '{invalidValue}' was not recognized as a valid Boolean.{nl}";
 
         using var console = new FakeInMemoryConsole();
         var sut = TestHelpers.BuildStyleTestApp(console);
 
-        var args = new[] { command, validOption, invalidValue };
+        var args = new[] { Command, validOption, invalidValue };
 
         // Act.
         var exitCode = await sut.RunAsync(args);
@@ -110,7 +103,7 @@ public class VerifyCommandFunctionalTests
         using var console = new FakeInMemoryConsole();
         var sut = TestHelpers.BuildStyleTestApp(console);
 
-        var args = new[] { command, invalidParameter };
+        var args = new[] { Command, invalidParameter };
 
         // Act.
         var exitCode = await sut.RunAsync(args);
@@ -128,14 +121,15 @@ public class VerifyCommandFunctionalTests
     {
         // Arrange.
         var expectedStdOutputSegments = GetExpectedVerifyHelpMenuOutputSegments();
-        var expectedStdError = $"You must enable at least one formatter to verify the code style with.{nl}";
+        var expectedStdError =
+            $"You must enable at least one formatter to verify the code style with.{nl}";
 
         using var console = new FakeInMemoryConsole();
         var sut = TestHelpers.BuildStyleTestApp(console);
 
         var args = new[]
         {
-            command,
+            Command,
             $"--{Style.Constants.StyleOption}",
             "false",
             $"--{Style.Constants.AnalyzersOption}",
@@ -162,16 +156,17 @@ public class VerifyCommandFunctionalTests
     {
         // Arrange.
         var expectedStdOutputSegments = GetExpectedVerifyHelpMenuOutputSegments();
-        var expectedStdError = "You may only enable one whitespace formatter to verify code style " +
-            $"compliance with by specifying either the '--{Style.Constants.CsharpierOption}' option or the " +
-            $"'--{Style.Constants.WhitespaceOption}' option to avoid potential conflicts.{nl}";
+        var expectedStdError =
+            "You may only enable one whitespace formatter to verify code style "
+            + $"compliance with by specifying either the '--{Style.Constants.CsharpierOption}' option or the "
+            + $"'--{Style.Constants.WhitespaceOption}' option to avoid potential conflicts.{nl}";
 
         using var console = new FakeInMemoryConsole();
         var sut = TestHelpers.BuildStyleTestApp(console);
 
         var args = new[]
         {
-            command,
+            Command,
             $"--{Style.Constants.StyleOption}",
             "false",
             $"--{Style.Constants.AnalyzersOption}",
@@ -194,19 +189,19 @@ public class VerifyCommandFunctionalTests
     }
 
     internal static string[] GetExpectedVerifyHelpMenuOutputSegments() =>
-       new[]
-       {
-           Constants.CliTitle,
-           Constants.CliVersion,
-           Constants.CliDescription,
-           "USAGE",
-           $"{Constants.CliExecutableName}",
-           Style.Constants.VerifyCommand,
-           "DESCRIPTION",
-           "OPTIONS",
-           "-v|--verbosity",
-           "The output verbosity level. Choices: \"Quiet\", \"Normal\", \"Verbose\". Default: \"Normal\".",
-           "-h|--help",
-           "Shows help text.",
-       };
+        new[]
+        {
+            Constants.CliTitle,
+            Constants.CliVersion,
+            Constants.CliDescription,
+            "USAGE",
+            $"{Constants.CliExecutableName}",
+            Style.Constants.VerifyCommand,
+            "DESCRIPTION",
+            "OPTIONS",
+            "-v|--verbosity",
+            "The output verbosity level. Choices: \"Quiet\", \"Normal\", \"Verbose\". Default: \"Normal\".",
+            "-h|--help",
+            "Shows help text.",
+        };
 }
