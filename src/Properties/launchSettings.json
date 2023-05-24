@@ -1,0 +1,149 @@
+{
+  "profiles": {
+    "Style - Help Menu": {
+      "commandName": "Project",
+      "commandLineArgs": "--help",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Version": {
+      "commandName": "Project",
+      "commandLineArgs": "--version",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - No Specified Command": {
+      "commandName": "Project",
+      "commandLineArgs": "",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Invalid Option (Failure)": {
+      "commandName": "Project",
+      "commandLineArgs": "--i-do-not-exist true",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Invalid Parameter (Failure)": {
+      "commandName": "Project",
+      "commandLineArgs": "i-do-not-exist",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Verify - Help Menu": {
+      "commandName": "Project",
+      "commandLineArgs": "verify --help",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Verify - Default Values": {
+      "commandName": "Project",
+      "commandLineArgs": "verify",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Verify - Only dotnet-format Style (verbose)": {
+      "commandName": "Project",
+      "commandLineArgs": "verify -s true -a false -w false -c false -v verbose",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Verify - Only dotnet-format Analyzers (verbose)": {
+      "commandName": "Project",
+      "commandLineArgs": "verify -s false -a true -w false -c false -v verbose",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Verify - Only dotnet-format Whitespace (verbose)": {
+      "commandName": "Project",
+      "commandLineArgs": "verify -s false -a false -w true -c false -v verbose",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Verify - Only dotnet-format Formatters Enabled (verbose)": {
+      "commandName": "Project",
+      "commandLineArgs": "verify -s true -a true -w true -c false -v verbose",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Verify - Only CSharpier (verbose)": {
+      "commandName": "Project",
+      "commandLineArgs": "verify -s false -a false -w false -c true -v verbose",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Verify - Invalid Option (Failure)": {
+      "commandName": "Project",
+      "commandLineArgs": "verify --i-do-not-exist true",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Verify - Invalid Option Value (Failure)": {
+      "commandName": "Project",
+      "commandLineArgs": "verify -s invalid-value",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Verify - Invalid Parameter (Failure)": {
+      "commandName": "Project",
+      "commandLineArgs": "verify i-do-not-exist",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Verify - No Formatters Enabled (Failure)": {
+      "commandName": "Project",
+      "commandLineArgs": "verify -s false -a false -w false -c false",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Verify - Both Whitespace Formatters Enabled (Failure)": {
+      "commandName": "Project",
+      "commandLineArgs": "verify -s false -a false -w true -c true",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Format - Help Menu": {
+      "commandName": "Project",
+      "commandLineArgs": "format --help",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Format - Default Values": {
+      "commandName": "Project",
+      "commandLineArgs": "format",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Format - Only CSharpier Enabled (verbose)": {
+      "commandName": "Project",
+      "commandLineArgs": "format -s false -a false -w false -c true -v verbose",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Format - Only dotnet-format Style Enabled (verbose)": {
+      "commandName": "Project",
+      "commandLineArgs": "format -s true -a false -w false -c false -v verbose",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Format - Only dotnet-format Analyzers Enabled (verbose)": {
+      "commandName": "Project",
+      "commandLineArgs": "format -s false -a true -w false -c false",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Format - Only dotnet-format Whitespace Enabled (verbose)": {
+      "commandName": "Project",
+      "commandLineArgs": "format -s false -a false -w true -c false -v verbose",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Format - Only dotnet-format Formatters Enabled (verbose)": {
+      "commandName": "Project",
+      "commandLineArgs": "format -s true -a true -w true -c false -v verbose",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Format - Invalid Option (Failure)": {
+      "commandName": "Project",
+      "commandLineArgs": "format --i-do-not-exist true",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Format - Invalid Option Value (Failure)": {
+      "commandName": "Project",
+      "commandLineArgs": "format -s invalid-value",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Format - Invalid Parameter (Failure)": {
+      "commandName": "Project",
+      "commandLineArgs": "format i-do-not-exist",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Format - No Formatters Enabled (Failure)": {
+      "commandName": "Project",
+      "commandLineArgs": "format -s false -a false -w false -c false",
+      "workingDirectory": "$(SolutionDir)"
+    },
+    "Style - Format - Both Whitespace Formatters Enabled (Failure)": {
+      "commandName": "Project",
+      "commandLineArgs": "format -s false -a false -w true -c true",
+      "workingDirectory": "$(SolutionDir)"
+    }
+  }
+}

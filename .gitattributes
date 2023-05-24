@@ -1,0 +1,14 @@
+# Assigns Git attributes to specified pathnames.
+# More info: https://git-scm.com/docs/gitattributes
+
+# ------------------
+# General settings |
+# ------------------
+# Set default behaviour to automatically normalize line endings of text files.
+*                 text=auto
+
+# ----------------------------------------------------------------------
+# Specify the line endings for files that should have a specific style |
+# ----------------------------------------------------------------------
+# Checkout with CRLF
+*.sln             text eol=crlf
