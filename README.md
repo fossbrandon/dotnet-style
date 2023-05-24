@@ -164,3 +164,11 @@ OPTIONS
 
 **Note:** You can replace `format` with `verify` in any of the above examples to verify whether the
 current C# files comply with coding standards rather than actually modifying any code.
+
+## Disclaimers
+
+Since this .NET tool relies on other tools to perform the actual code style functions, there are
+limitations. For instance, the `dotnet format` formatter tool does not automatically fix all
+warnings/errors at the time of writing this. So, depending on how strict you make your
+configuration, you may still have to manually fix code to ensure compliance with your coding
+standards.
