@@ -1,0 +1,30 @@
+<!-- Share build properties and packages with all projects -->
+<Project>
+  <PropertyGroup>
+    <!-- Build-related Properties -->
+    <!-- Generate XML documentation of code from code comments -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- C# Compiler Options -->
+    <Nullable>enable</Nullable>
+
+    <!-- Generated File Properties -->
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Code Analysis Properties -->
+    <!-- Set the code analysis level to the latest recommended analyzers that have been released -->
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <!-- Enable code style analysis diagnostics for .NET projects to be reported on a build -->
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <!-- Do not allow warnings in a release build. Leave them as is during debug builds for developer sanity. -->
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <!-- Commands to run before builds -->
+  <Target Name="Prebuild Actions" BeforeTargets="PreBuildEvent">
+    <Exec Command="dotnet tool restore"/>
+  </Target>
+</Project>

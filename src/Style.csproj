@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+
+    <ToolCommandName>style</ToolCommandName>
+    <Description> A customizable .NET tool that helps maintain a consistent C# coding style.</Description>
+    <Authors>Brandon Foss</Authors>
+    <Version>1.0.0-alpha.2</Version>
+    <PackageTags>c#;csharp;code;style;verify;enforce;format;csharpier;.net;dotnet;tool;cli;</PackageTags>
+    <PackAsTool>True</PackAsTool>
+    <Copyright>Copyright (c) 2023 Brandon Foss</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>https://github.com/fossbrandon/dotnet-style/releases</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/fossbrandon/dotnet-style</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/fossbrandon/dotnet-style</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CliFx" Version="2.3.3" />
+    <PackageReference Include="CliWrap" Version="3.6.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,34 @@
+# Helps maintain consistent styling for various file types and coding languages
+# More info: https://editorconfig.org/
+# This config overrides specific rules from the top-most EditorConfig file in regards to testing differences.
+
+###################
+# Common Settings #
+###################
+
+# This file works alongside the top-most EditorConfig file
+root = false
+
+# C# Files (.NET Code Style Settings)
+[*.cs]
+
+# IDE0058: Remove unnecessary expression value
+# https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0058
+# Tests often have unused expressions as part of the test infrastructure so ignore this rule
+dotnet_diagnostic.IDE0058.severity = none
+
+# Naming Styles
+# ignored_style (lists a capitalization style since one is required)
+dotnet_naming_style.ignored_style.capitalization = pascal_case
+
+# Naming Rules - More specific rules regarding accessibilities, modifiers, and symbols take precedence over less specific rules
+# Methods in test files will all have different styles so don't add rules
+# Note: Uses existing groups from the top-most EditorConfig
+dotnet_naming_rule.methods_should_be_any_style.symbols  = method_group
+dotnet_naming_rule.methods_should_be_any_style.style    = ignored_style
+dotnet_naming_rule.methods_should_be_any_style.severity = none
+# Async methods in test files will all have different styles so don't add rules
+# Note: Uses existing groups from the top-most EditorConfig
+dotnet_naming_rule.async_methods_should_be_any_style.symbols  = async_method_group
+dotnet_naming_rule.async_methods_should_be_any_style.style    = ignored_style
+dotnet_naming_rule.async_methods_should_be_any_style.severity = none

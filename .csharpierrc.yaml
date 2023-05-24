@@ -1,0 +1,15 @@
+# Configures the CSharpier dotnet tool.
+# More info: https://csharpier.com/docs/Configuration
+
+# The line length where the formatter will wrap content.
+# Note: This is not a hard limit and some lines will extend slightly past the limit.
+# More info: https://csharpier.com/docs/Configuration#print-width
+printWidth: 100
+
+# Indent with spaces instead of tabs.
+# More info: https://csharpier.com/docs/Configuration#use-tabs
+useTabs: false
+
+# The number of spaces per indentation level.
+# More info: https://csharpier.com/docs/Configuration#tab-width
+tabWidth: 4
