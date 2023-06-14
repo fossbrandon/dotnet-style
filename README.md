@@ -1,5 +1,8 @@
 # Style
 
+<!-- markdownlint-disable-next-line MD033 -->
+<img src="icon-large.png" alt="icon" width="256" height="256" />
+
 `dotnet-style` is a .NET tool that enables users to maintain a consistent and configurable C# code
 style throughout projects.
 
@@ -39,7 +42,7 @@ Install `dotnet-style` as a local .NET tool using the following steps:
 3. Anyone who wants to use the local tool can run the command `dotnet tool restore` from within the
    repo to restore their local .NET tool(s) to match the manifest file.
 
-   - 💡 `Quick Tip:` You can add this as an `MSBuild` `PreBuildEvent` so that devs don't have to
+   - 💡 `Quick Tip:` You can add this as an `MSBuild` `PreBuildEvent` so that developers don't have to
      worry about manually checking for changes and restoring tools when applicable.
 
      - Ex:
@@ -119,7 +122,7 @@ DESCRIPTION
   Formats C# files according to a defined coding style.
 
 OPTIONS
-  -p|--path         The directory containing files to recursively format. Default: "C:\Users\branfoss\source\repos\Style\src".
+  -p|--path         The directory containing files to recursively format. Default: "C:\Users\<USER>\source\repos\Style\src".
   -s|--style        Whether to format code using the 'dotnet format' formatter to run code style analyzers and apply fixes. Default: "True".
   -a|--analyzers    Whether to format code using the 'dotnet format' formatter to run third party code style analyzers and apply fixes. Default: "True".
   -w|--whitespace   Whether to format code using the 'dotnet format' formatter to run whitespace formatting. Default: "False".
@@ -141,7 +144,7 @@ DESCRIPTION
   Verifies that C# files comply with the defined coding style.
 
 OPTIONS
-  -p|--path         The directory containing files to recursively verify the coding style compliance of. Default: "C:\Users\branfoss\source\repos\Style\src".
+  -p|--path         The directory containing files to recursively verify the coding style compliance of. Default: "C:\Users\<USER>\source\repos\Style\src".
   -s|--style        Whether to verify code complies with the coding style used by the 'dotnet format' formatter for code style analyzer settings. Default: "True".
   -a|--analyzers    Whether to verify code complies with the coding style used by the 'dotnet format' formatter for third party code style analyzer settings. Default: "True".
   -w|--whitespace   Whether to verify code complies with the coding style used by the 'dotnet format' formatter for whitespace settings. Default: "False".
